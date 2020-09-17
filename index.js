@@ -130,7 +130,7 @@ class Lambdasian {
 
 /*
   TASK 4
-    - Write an Instructor class extending Lambdasian.
+    - Write an Instructor class extending Lambdasian.** DONE**
     - Its constructor takes a single argument - an object with the following keys:
         + All the keys used to initialize instances of Lambdasian.
         + `specialty`: what the instance of Instructor is good at, i.e. 'redux'
@@ -145,8 +145,17 @@ class Lambdasian {
 class Instructor extends Lambdasian {
   constructor(param){
     super(param)
+    // below we add any additional arguements 
+    this.specialty = param.specialty;
+    this.favLanguage = param.favLanguage;
+    this.catchPhrase = param.catchPhrase;
   }
-
+  demo(subject){
+    return `Today we are learning about ${subject}`;
+  }
+  grade(student, subject){
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
 
 }
 
