@@ -29,28 +29,47 @@ class Airplane {
 
 /*
   TASK 1
-    - Write a Person class whose constructor initializes `name` and `age` from arguments.
-    - All instances of Person should also initialize with an empty `stomach` array.
-    - Give instances of Person the ability to `.eat("someFood")`:
-        + When eating an edible, it should be pushed into the `stomach`.
-        + The `eat` method should have no effect if there are 10 items in the `stomach`.
-    - Give instances of Person the ability to `.poop()`:
-        + When an instance poops, its `stomach` should empty.
+    - Write a Person class whose constructor initializes `name` and `age` from arguments. **DONE**
+    - All instances of Person should also initialize with an empty `stomach` array. **DONE**
+    - Give instances of Person the ability to `.eat("someFood")`: **DONE**
+        + When eating an edible, it should be pushed into the `stomach`. **DONE**
+        + The `eat` method should have no effect if there are 10 items in the `stomach`. **DONE**
+    - Give instances of Person the ability to `.poop()`: **DONE**
+        + When an instance poops, its `stomach` should empty. **DONE**
     - Give instances of Person a method `.toString()`:
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
 class Person {
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  eat(someFood) {
+    if(this.stomach.length < 10) {
+    this.stomach.push(someFood);
+    } 
+  }
 
-}
+  poop(){
+    this.stomach = [];
+  }
 
+  toString() {
+    return `${this.name}, ${this.age}`;
+  }
+}  
+
+let neo = new Person({name:'Neo', age:20});
+console.log(neo);
 /*
   TASK 2
-    - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
+    - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments. **DONE**
     - All instances built with Car:
-        + should initialize with a `tank` at 0
-        + should initialize with an `odometer` at 0
-    - Give cars the ability to get fueled with a `.fill(gallons)` method. Add the gallons to `tank`.
+        + should initialize with a `tank` at 0 **DONE**
+        + should initialize with an `odometer` at **DONE**
+    - Give cars the ability to get fueled with a `.fill(gallons)` method. Add the gallons to `tank`. **DONE**
     - Give cars ability to `.drive(distance)`. The distance driven:
         + Should cause the `odometer` to go up.
         + Should cause the the `tank` to go down taking `milesPerGallon` into account.
@@ -59,7 +78,35 @@ class Person {
 */
 
 class Car {
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
 
+  fill(gallons){
+    this.tank = this.tank + gallons;
+  }
+
+  drive(distance){
+    if (this.tank * this.milesPerGallon >= distance){
+      this.tank = this.tank - (distance/this.milesPerGallon);
+      this.odometer = this.odometer + distance;
+    
+    } else if (this.tank * this.milesPerGallon < distance){
+      
+      let number = distance - (this.tank * this.milesPerGallon);
+      
+      this.odometer = this.odometer + distance - number;
+
+      this.tank = 0;
+
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+
+    
+  }
 }
 
 /*
@@ -75,6 +122,15 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
+  constructor(name, age, location){
+    this.name = name;
+    this.age = age;
+    this.location = location;
+  }
+
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 
 }
 
