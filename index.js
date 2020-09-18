@@ -161,8 +161,8 @@ class Instructor extends Lambdasian {
 
 /*
   TASK 5
-    - Write a Student class extending Lambdasian.
-    - Its constructor takes a single argument -  an object with the following keys:
+    - Write a Student class extending Lambdasian. **DONE**
+    - Its constructor takes a single argument -  an object with the following keys: 
         + All the keys used to initialize instances of Lambdasian.
         + `previousBackground` i.e. what the Student used to do before Lambda School
         + `className` i.e. CS132
@@ -174,8 +174,24 @@ class Instructor extends Lambdasian {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian {
+  constructor(object){
+    super(object);
+    // arguements specific to student
+    this.previousBackground = object.previousBackground;
+    this.className = object.className;
+    this.favSubjects = object.favSubjects;
+  }
+// methods specific to student
+  listSubjects(){
+    return `Loving ${this.favSubjects.join()}`;
+  };
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`;
+  };
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  };
 }
 
 /*
@@ -191,9 +207,22 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Instructor {
+  constructor(params) {
+    super(params);
+    this.gradClassName = params.gradClassName;
+    this.favInstructor = params.favInstructor;
+  }
 
-}
+  standUp(slack){
+    return `${this.name} announces to ${slack}, @channel standy times!`;
+  };
+
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`
+  };
+
+};
 
 /*
   STRETCH PROBLEM (no tests!)
